@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.bg-image {
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-top: 5vh;
+    position: absolute;
+    top: 5%;
+    left: 30%; /* Moved to the right */
+    transform: translate(-50%, -50%);
+    font-size: 7rem !important; /* Larger font size */
+    text-shadow: 
+        2px 2px 0 rgba(47, 47, 47, 0.8), /* Dark grey outline */
+        -2px -2px 0 rgba(47, 47, 47, 0.8),
+        4px 4px 15px rgba(0, 0, 0, 0.575); /* Dropshadow */
+}
+
+/* Adjust for mobile responsiveness */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 4rem !important;
+        margin-top: 10vh;
+        left: 50%; /* Center on mobile */
+    }
+}
