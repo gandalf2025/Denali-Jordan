@@ -1,0 +1,142 @@
+body {
+    background-image: url('background-min.png');
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: auto 100%; /* Ensures the image covers half the width and the entire height */
+    background-attachment: fixed; /* Makes the background image stay fixed */
+    min-height: 100vh; /* Ensures the body is at least the full height of the viewport */
+    height: 100%; /* Ensures the body covers the entire height of the viewport */
+    margin: 0; /* Removes default margin */
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+.main-heading {
+    font-family: 'Georgia', serif; /* Use a professional font */
+    font-size: 3em;
+    font-weight: bold;
+    margin: 0;
+    color: white; /* Set text color to white */
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000; /* Make the black outline slightly bigger */
+    letter-spacing: 3px; /* Increase letter spacing */
+}
+
+.menu-btn {
+    font-size: 2em;
+    background: none;
+    border: none;
+    color: rgb(0, 0, 0);
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+}
+
+.nav-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px; /* About an inch and a half wide */
+    height: 100%;
+    background-color: #333; /* Dark grey color */
+    color: white;
+    transition: left 0.3s ease;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    z-index: 1000; /* Ensure the nav menu is above other elements */
+}
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 60px; /* Add space below the close button */
+}
+
+.nav-menu ul li {
+    margin: 20px 0;
+}
+
+.nav-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.nav-menu .contact-details {
+    position: absolute;
+    bottom: 60px; /* Move the contact details higher */
+    left: 20px;
+}
+
+.close-btn {
+    font-size: 2em;
+    background: none;
+    border: none;
+    color: white;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+}
+
+.nav-menu.open {
+    left: 0;
+}
+
+@media (min-width: 768px) {
+    .main-heading {
+        display: inline-block;
+        font-size: 5em; /* Adjust font size for larger screens */
+    }
+}
+
+/* Add this rule to make the lines of text black */
+div p {
+    color: black;
+}
+
+/* Styles for the CV content */
+.cv-content {
+    max-width: 60%; /* Limit the width to 60% of the container */
+    margin: 20px auto; /* Center the content horizontally and add vertical margin */
+    font-family: 'Arial', sans-serif; /* Use a professional font */
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #333; /* Dark grey color for text */
+}
+
+.cv-content h2, .cv-content h3 {
+    margin-top: 20px;
+    font-family: 'Georgia', serif; /* Use a professional font for headings */
+    color: #000; /* Black color for headings */
+}
+
+.cv-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* Styles for the download section */
+.download-section {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: white;
+    background-color: #444; /* Dark grey color */
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+    background-color: #555; /* Slightly lighter grey on hover */
+}
