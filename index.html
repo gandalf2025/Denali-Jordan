@@ -1,44 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>3D Print with Denali Jordan</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3DPrintHub - Your Ideas, Printed to Life</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        .background-fixed {
+            background-image: url('https://placehold.co/1920x1080/E0E0E0/555555?text=3D+Printing+Background'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Keeps background image fixed */
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+        }
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.3); /* Dark overlay for text readability */
+            z-index: -1;
+        }
+        .min-h-screen-minus-header {
+            min-height: calc(100vh - 120px); /* Adjust based on your header/footer height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <h1>3D Printing by [Your Name]</h1>
-    <p>Affordable custom 3D printing on demand</p>
-  </header>
+<body class="text-gray-900">
+    <!-- Fixed Background Image -->
+    <div class="background-fixed"></div>
+    <!-- Overlay for better text readability -->
+    <div class="overlay"></div>
 
-  <main>
-    <section>
-      <h2>How it works</h2>
-      <p>Send me your STL file and I’ll print your design using high-quality filament. I’ll reply with pricing and estimated delivery time.</p>
-      <ul>
-        <li>Quick turnaround</li>
-        <li>Flexible materials/colors</li>
-        <li>Local pickup or shipping</li>
-      </ul>
-    </section>
+    <!-- Header/Navigation -->
+    <header class="bg-white bg-opacity-90 shadow-md p-4 sticky top-0 z-10 rounded-b-xl">
+        <nav class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-800 mb-2 sm:mb-0">
+                <span class="text-blue-600">3D</span>PrintHub
+            </h1>
+            <ul class="flex space-x-4">
+                <li>
+                    <a href="index.html" class="flex items-center space-x-1 px-3 py-2 rounded-full transition-colors duration-200 bg-blue-100 text-blue-700">
+                        <!-- Lucide-react icons are not directly available in pure HTML, using inline SVG or simple text -->
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="purchase.html" class="flex items-center space-x-1 px-3 py-2 rounded-full transition-colors duration-200 text-gray-600 hover:bg-gray-100">
+                        <span>Order Print</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="about.html" class="flex items-center space-x-1 px-3 py-2 rounded-full transition-colors duration-200 text-gray-600 hover:bg-gray-100">
+                        <span>About</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-    <section>
-      <h2>Request a Print</h2>
-      <p>Email me your STL file along with the print details using the form below.</p>
-      <form action="mailto:your@email.com" method="POST" enctype="text/plain">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <textarea name="message" placeholder="Describe what you need (material, color, size, etc.)" rows="4" required></textarea>
-        <input type="file" name="file" accept=".stl" />
-        <button type="submit">Send Request</button>
-      </form>
-      <p><em>Note: Your email client will open to send the file. For larger or multiple files, contact me directly.</em></p>
-    </section>
-  </main>
+    <!-- Main Content Area -->
+    <main class="container mx-auto py-8">
+        <div class="flex flex-col lg:flex-row items-center justify-center p-4 lg:p-8 min-h-screen-minus-header">
+            <!-- Left Half: Product Grid (Mobile: top, Desktop: left) -->
+            <div class="w-full lg:w-1/2 p-4 lg:pr-8 mb-8 lg:mb-0">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center lg:text-left">Our Creations</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+                    <!-- Product 1 -->
+                    <a href="product-detail.html?id=vase-geometric" class="bg-white bg-opacity-90 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden transform hover:-translate-y-1">
+                        <img src="https://placehold.co/300x300/F0F0F0/333333?text=Vase" alt="Geometric Vase" class="w-full h-32 sm:h-40 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/300x300/F0F0F0/333333?text=Image+Error';">
+                        <div class="p-3 text-center">
+                            <p class="font-semibold text-gray-700 text-sm sm:text-base">Geometric Vase</p>
+                        </div>
+                    </a>
+                    <!-- Product 2 -->
+                    <a href="product-detail.html?id=dragon-figurine" class="bg-white bg-opacity-90 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden transform hover:-translate-y-1">
+                        <img src="https://placehold.co/300x300/F0F0F0/333333?text=Dragon" alt="Dragon Figurine" class="w-full h-32 sm:h-40 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/300x300/F0F0F0/333333?text=Image+Error';">
+                        <div class="p-3 text-center">
+                            <p class="font-semibold text-gray-700 text-sm sm:text-base">Dragon Figurine</p>
+                        </div>
+                    </a>
+                    <!-- Product 3 -->
+                    <a href="product-detail.html?id=phone-stand" class="bg-white bg-opacity-90 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden transform hover:-translate-y-1">
+                        <img src="https://placehold.co/300x300/F0F0F0/333333?text=Phone" alt="Phone Stand" class="w-full h-32 sm:h-40 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/300x300/F0F0F0/333333?text=Image+Error';">
+                        <div class="p-3 text-center">
+                            <p class="font-semibold text-gray-700 text-sm sm:text-base">Phone Stand</p>
+                        </div>
+                    </a>
+                    <!-- Product 4 -->
+                    <a href="product-detail.html?id=keychain-custom" class="bg-white bg-opacity-90 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden transform hover:-translate-y-1">
+                        <img src="https://placehold.co/300x300/F0F0F0/333333?text=Keychain" alt="Custom Keychain" class="w-full h-32 sm:h-40 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/300x300/F0F0F0/333333?text=Image+Error';">
+                        <div class="p-3 text-center">
+                            <p class="font-semibold text-gray-700 text-sm sm:text-base">Custom Keychain</p>
+                        </div>
+                    </a>
+                    <!-- Product 5 -->
+                    <a href="product-detail.html?id=pen-holder" class="bg-white bg-opacity-90 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden transform hover:-translate-y-1">
+                        <img src="https://placehold.co/300x300/F0F0F0/333333?text=Pen" alt="Pen Holder" class="w-full h-32 sm:h-40 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/300x300/F0F0F0/333333?text=Image+Error';">
+                        <div class="p-3 text-center">
+                            <p class="font-semibold text-gray-700 text-sm sm:text-base">Pen Holder</p>
+                        </div>
+                    </a>
+                    <!-- Product 6 -->
+                    <a href="product-detail.html?id=earring-display" class="bg-white bg-opacity-90 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden transform hover:-translate-y-1">
+                        <img src="https://placehold.co/300x300/F0F0F0/333333?text=Earring" alt="Earring Display" class="w-full h-32 sm:h-40 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/300x300/F0F0F0/333333?text=Image+Error';">
+                        <div class="p-3 text-center">
+                            <p class="font-semibold text-gray-700 text-sm sm:text-base">Earring Display</p>
+                        </div>
+                    </a>
+                    <!-- Product 7 -->
+                    <a href="product-detail.html?id=robot-toy" class="bg-white bg-opacity-90 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden transform hover:-translate-y-1">
+                        <img src="https://placehold.co/300x300/F0F0F0/333333?text=Robot" alt="Robot Toy" class="w-full h-32 sm:h-40 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/300x300/F0F0F0/333333?text=Image+Error';">
+                        <div class="p-3 text-center">
+                            <p class="font-semibold text-gray-700 text-sm sm:text-base">Robot Toy</p>
+                        </div>
+                    </a>
+                    <!-- Product 8 -->
+                    <a href="product-detail.html?id=coaster-set" class="bg-white bg-opacity-90 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden transform hover:-translate-y-1">
+                        <img src="https://placehold.co/300x300/F0F0F0/333333?text=Coaster" alt="Coaster Set" class="w-full h-32 sm:h-40 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/300x300/F0F0F0/333333?text=Image+Error';">
+                        <div class="p-3 text-center">
+                            <p class="font-semibold text-gray-700 text-sm sm:text-base">Coaster Set</p>
+                        </div>
+                    </a>
+                    <!-- Product 9 -->
+                    <a href="product-detail.html?id=planter-mini" class="bg-white bg-opacity-90 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden transform hover:-translate-y-1">
+                        <img src="https://placehold.co/300x300/F0F0F0/333333?text=Planter" alt="Mini Planter" class="w-full h-32 sm:h-40 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/300x300/F0F0F0/333333?text=Image+Error';">
+                        <div class="p-3 text-center">
+                            <p class="font-semibold text-gray-700 text-sm sm:text-base">Mini Planter</p>
+                        </div>
+                    </a>
+                    <!-- Product 10 -->
+                    <a href="product-detail.html?id=puzzle-3d" class="bg-white bg-opacity-90 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden transform hover:-translate-y-1">
+                        <img src="https://placehold.co/300x300/F0F0F0/333333?text=Puzzle" alt="3D Puzzle" class="w-full h-32 sm:h-40 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/300x300/F0F0F0/333333?text=Image+Error';">
+                        <div class="p-3 text-center">
+                            <p class="font-semibold text-gray-700 text-sm sm:text-base">3D Puzzle</p>
+                        </div>
+                    </a>
+                    <!-- Product 11 -->
+                    <a href="product-detail.html?id=tool-holder" class="bg-white bg-opacity-90 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden transform hover:-translate-y-1">
+                        <img src="https://placehold.co/300x300/F0F0F0/333333?text=Tool" alt="Tool Holder" class="w-full h-32 sm:h-40 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/300x300/F0F0F0/333333?text=Image+Error';">
+                        <div class="p-3 text-center">
+                            <p class="font-semibold text-gray-700 text-sm sm:text-base">Tool Holder</p>
+                        </div>
+                    </a>
+                    <!-- Product 12 -->
+                    <a href="product-detail.html?id=cable-organizer" class="bg-white bg-opacity-90 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden transform hover:-translate-y-1">
+                        <img src="https://placehold.co/300x300/F0F0F0/333333?text=Cable" alt="Cable Organizer" class="w-full h-32 sm:h-40 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/300x300/F0F0F0/333333?text=Image+Error';">
+                        <div class="p-3 text-center">
+                            <p class="font-semibold text-gray-700 text-sm sm:text-base">Cable Organizer</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
-  <footer>
-    <p>&copy; 2025 [Your Name] | 3D Printing Services</p>
-  </footer>
+            <!-- Right Half: Business Info & Upload (Mobile: bottom, Desktop: right) -->
+            <div class="w-full lg:w-1/2 p-4 lg:pl-8 bg-white bg-opacity-90 rounded-xl shadow-lg">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center lg:text-left">Your Ideas, Printed to Life</h2>
+                <p class="text-gray-600 leading-relaxed mb-6 text-center lg:text-left">
+                    Hi, I'm a passionate creator with a state-of-the-art 3D printer. My mission is to transform your digital designs into tangible objects. Whether you have your own unique file or want to choose from my curated collection, I'm here to bring your vision to life. Simply upload your design or select one of mine, finalize your payment, and I'll handle the rest, delivering a high-quality 3D print directly to you.
+                </p>
+                <div class="flex justify-center lg:justify-start">
+                    <a href="purchase.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2">
+                        <!-- SVG for Upload icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-upload"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                        <span>Upload Your File</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white bg-opacity-90 text-gray-600 p-4 text-center mt-8 rounded-t-xl shadow-inner">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> 3DPrintHub. All rights reserved.</p>
+    </footer>
 </body>
 </html>
