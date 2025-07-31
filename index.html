@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D Print with Denali Jordan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background: #222;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      background: white;
+    }
+    h1, h2 {
+      color: #222;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    input, textarea, button {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #eee;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>3D Printing by [Your Name]</h1>
+    <p>Affordable custom 3D printing on demand</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>How it works</h2>
+      <p>Send me your STL file and I’ll print your design using high-quality filament. I’ll reply with pricing and estimated delivery time.</p>
+      <ul>
+        <li>Quick turnaround</li>
+        <li>Flexible materials/colors</li>
+        <li>Local pickup or shipping</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Request a Print</h2>
+      <p>Email me your STL file along with the print details using the form below.</p>
+      <form action="mailto:your@email.com" method="POST" enctype="text/plain">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" placeholder="Describe what you need (material, color, size, etc.)" rows="4" required></textarea>
+        <input type="file" name="file" accept=".stl" />
+        <button type="submit">Send Request</button>
+      </form>
+      <p><em>Note: Your email client will open to send the file. For larger or multiple files, contact me directly.</em></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 [Your Name] | 3D Printing Services</p>
+  </footer>
+</body>
+</html>
