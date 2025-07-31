@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Your Order - 3DPrintHub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-gray-900">
+    <!-- Fixed Background Image -->
+    <div class="background-fixed"></div>
+    <!-- Overlay for better text readability -->
+    <div class="overlay"></div>
+
+    <!-- Header/Navigation -->
+    <header class="bg-white bg-opacity-90 shadow-md p-4 sticky top-0 z-10 rounded-b-xl">
+        <nav class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-800 mb-2 sm:mb-0">
+                <span class="text-blue-600">3D</span>PrintHub
+            </h1>
+            <ul class="flex space-x-4">
+                <li>
+                    <a href="index.html" class="flex items-center space-x-1 px-3 py-2 rounded-full transition-colors duration-200 text-gray-600 hover:bg-gray-100">
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="purchase.html" class="flex items-center space-x-1 px-3 py-2 rounded-full transition-colors duration-200 bg-blue-100 text-blue-700">
+                        <span>Order Print</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="about.html" class="flex items-center space-x-1 px-3 py-2 rounded-full transition-colors duration-200 text-gray-600 hover:bg-gray-100">
+                        <span>About</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto py-8">
+        <div class="flex items-center justify-center p-4 lg:p-8 min-h-screen-minus-header">
+            <form id="purchaseForm" class="w-full max-w-3xl bg-white bg-opacity-90 rounded-xl shadow-lg p-6 lg:p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Place Your Custom Order</h2>
+
+                <div id="message-box" class="hidden p-3 rounded-lg mb-4 text-center"></div>
+
+                <!-- Customer Details -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Customer Details</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="customerName" class="block text-gray-700 text-sm font-bold mb-2">Full Name:</label>
+                            <input type="text" id="customerName" name="customerName" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label for="customerEmail" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                            <input type="email" id="customerEmail" name="customerEmail" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File Upload & Cost Calculator -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Upload Your File & Configure Print</h3>
+                    <div class="mb-4">
+                        <label for="fileUpload" class="block text-gray-700 text-sm font-bold mb-2">Upload 3D File (.STL, .OBJ, etc.):</label>
+                        <input type="file" id="fileUpload" name="fileUpload" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" accept=".stl,.obj,.3mf" required>
+                        <p id="fileNameDisplay" class="text-gray-500 text-xs mt-1"></p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                        <div>
+                            <label for="height" class="block text-gray-700 text-sm font-bold mb-2">Height (cm):</label>
+                            <input type="number" id="height" name="height" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" min="0.1" step="0.1" required>
+                        </div>
+                        <div>
+                            <label for="width" class="block text-gray-700 text-sm font-bold mb-2">Width (cm):</label>
+                            <input type="number" id="width" name="width" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" min="0.1" step="0.1" required>
+                        </div>
+                        <div>
+                            <label for="depth" class="block text-gray-700 text-sm font-bold mb-2">Depth (cm):</label>
+                            <input type="number" id="depth" name="depth" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" min="0.1" step="0.1" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 flex items-center">
+                        <input type="checkbox" id="extraStrong" name="extraStrong" class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                        <label for="extraStrong" class="text-gray-700 font-bold">Extra Strong Option</label>
+                    </div>
+
+                    <div class="text-right text-2xl font-bold text-blue-700">
+                        Estimated Price: $<span id="calculatedPrice">0.00</span>
+                    </div>
+                </div>
+
+                <!-- Shipping Section -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Shipping Information</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="shippingAddress" class="block text-gray-700 text-sm font-bold mb-2">Address:</label>
+                            <input type="text" id="shippingAddress" name="shippingAddress" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label for="shippingCity" class="block text-gray-700 text-sm font-bold mb-2">City:</label>
+                            <input type="text" id="shippingCity" name="shippingCity" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="shippingPostalCode" class="block text-gray-700 text-sm font-bold mb-2">Postal Code:</label>
+                            <input type="text" id="shippingPostalCode" name="shippingPostalCode" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label for="shippingCountry" class="block text-gray-700 text-sm font-bold mb-2">Country:</label>
+                            <input type="text" id="shippingCountry" name="shippingCountry" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="flex justify-center">
+                    <button type="submit" id="submitButton" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <!-- SVG for Shopping Cart icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                        <span>Place Order</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white bg-opacity-90 text-gray-600 p-4 text-center mt-8 rounded-t-xl shadow-inner">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> 3DPrintHub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const heightInput = document.getElementById('height');
+            const widthInput = document.getElementById('width');
+            const depthInput = document.getElementById('depth');
+            const extraStrongCheckbox = document.getElementById('extraStrong');
+            const calculatedPriceSpan = document.getElementById('calculatedPrice');
+            const fileUploadInput = document.getElementById('fileUpload');
+            const fileNameDisplay = document.getElementById('fileNameDisplay');
+            const purchaseForm = document.getElementById('purchaseForm');
+            const submitButton = document.getElementById('submitButton');
+            const messageBox = document.getElementById('message-box');
+
+            // Pricing constants (adjust these as needed for your business)
+            const BASE_PRICE = 10.00; // Initial setup cost
+            const MATERIAL_COST_PER_CUBIC_CM = 0.05; // Cost per cubic centimeter
+            const EXTRA_STRONG_COST_FACTOR = 1.2; // 20% extra for strong option
+
+            function calculatePrice() {
+                const h = parseFloat(heightInput.value);
+                const w = parseFloat(widthInput.value);
+                const d = parseFloat(depthInput.value);
+                const extraStrong = extraStrongCheckbox.checked;
+
+                if (isNaN(h) || isNaN(w) || isNaN(d) || h <= 0 || w <= 0 || d <= 0) {
+                    calculatedPriceSpan.textContent = '0.00';
+                    return;
+                }
+
+                let volume = h * w * d;
+                let price = BASE_PRICE + (volume * MATERIAL_COST_PER_CUBIC_CM);
+
+                if (extraStrong) {
+                    price *= EXTRA_STRONG_COST_FACTOR;
+                }
+
+                calculatedPriceSpan.textContent = price.toFixed(2);
+            }
+
+            // Add event listeners for price calculation
+            heightInput.addEventListener('input', calculatePrice);
+            widthInput.addEventListener('input', calculatePrice);
+            depthInput.addEventListener('input', calculatePrice);
+            extraStrongCheckbox.addEventListener('change', calculatePrice);
+
+            // Display selected file name
+            fileUploadInput.addEventListener('change', () => {
+                if (fileUploadInput.files.length > 0) {
+                    fileNameDisplay.textContent = `Selected file: ${fileUploadInput.files[0].name}`;
+                } else {
+                    fileNameDisplay.textContent = '';
+                }
+            });
+
+            function showMessage(message, type) {
+                messageBox.textContent = message;
+                messageBox.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+                if (type === 'success') {
+                    messageBox.classList.add('bg-green-100', 'text-green-700');
+                } else {
+                    messageBox.classList.add('bg-red-100', 'text-red-700');
+                }
+            }
+
+            function clearForm() {
+                purchaseForm.reset();
+                fileNameDisplay.textContent = '';
+                calculatedPriceSpan.textContent = '0.00';
+                messageBox.classList.add('hidden');
+            }
+
+            purchaseForm.addEventListener('submit', (e) => {
+                e.preventDefault(); // Prevent default form submission
+
+                // Disable button and show loading spinner
+                submitButton.disabled = true;
+                submitButton.innerHTML = `
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Processing...
+                `;
+
+                // Collect form data
+                const formData = new FormData(purchaseForm);
+                const orderDetails = {};
+                for (let [key, value] of formData.entries()) {
+                    orderDetails[key] = value;
+                }
+                orderDetails.extraStrong = extraStrongCheckbox.checked;
+                orderDetails.calculatedPrice = parseFloat(calculatedPriceSpan.textContent);
+                orderDetails.orderDate = new Date().toISOString();
+
+                // Basic validation
+                if (!orderDetails.customerName || !orderDetails.customerEmail || !orderDetails.shippingAddress || !orderDetails.shippingCity || !orderDetails.shippingPostalCode || !orderDetails.shippingCountry || !fileUploadInput.files[0] || orderDetails.calculatedPrice <= 0) {
+                    showMessage('Please fill in all required fields, upload a file, and ensure a valid price is calculated.', 'error');
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                        <span>Place Order</span>
+                    `;
+                    return;
+                }
+
+                console.log("Simulating order submission:", orderDetails);
+
+                // Simulate network request for 1.5 seconds
+                setTimeout(() => {
+                    // In a real application, you would send this data to your backend
+                    // for processing, payment, and sending the actual email.
+                    // Example: fetch('/api/process-order', { method: 'POST', body: JSON.stringify(orderDetails) })
+
+                    showMessage('Order placed successfully! We will contact you shortly.', 'success');
+                    clearForm(); // Clear form after simulated success
+
+                    // Re-enable button and restore text
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                        <span>Place Order</span>
+                    `;
+                }, 1500);
+            });
+
+            // Initial price calculation on load
+            calculatePrice();
+        });
+    </script>
+</body>
+</html>

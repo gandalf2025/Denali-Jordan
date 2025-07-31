@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - 3DPrintHub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-gray-900">
+    <!-- Fixed Background Image -->
+    <div class="background-fixed"></div>
+    <!-- Overlay for better text readability -->
+    <div class="overlay"></div>
+
+    <!-- Header/Navigation -->
+    <header class="bg-white bg-opacity-90 shadow-md p-4 sticky top-0 z-10 rounded-b-xl">
+        <nav class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-800 mb-2 sm:mb-0">
+                <span class="text-blue-600">3D</span>PrintHub
+            </h1>
+            <ul class="flex space-x-4">
+                <li>
+                    <a href="index.html" class="flex items-center space-x-1 px-3 py-2 rounded-full transition-colors duration-200 text-gray-600 hover:bg-gray-100">
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="purchase.html" class="flex items-center space-x-1 px-3 py-2 rounded-full transition-colors duration-200 text-gray-600 hover:bg-gray-100">
+                        <span>Order Print</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="about.html" class="flex items-center space-x-1 px-3 py-2 rounded-full transition-colors duration-200 text-gray-600 hover:bg-gray-100">
+                        <span>About</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto py-8">
+        <div id="product-detail-content" class="flex flex-col lg:flex-row items-start justify-center p-4 lg:p-8 min-h-screen-minus-header">
+            <!-- Product details will be loaded here by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white bg-opacity-90 text-gray-600 p-4 text-center mt-8 rounded-t-xl shadow-inner">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> 3DPrintHub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            const productDetailContent = document.getElementById('product-detail-content');
+
+            const productsData = {
+                'vase-geometric': {
+                    name: 'Geometric Vase',
+                    image: 'https://placehold.co/600x600/F0F0F0/333333?text=Geometric+Vase',
+                    description: 'A beautifully designed geometric vase, perfect for modern interiors. Printed with high-quality PLA filament, offering a smooth finish and durable structure. Ideal for small floral arrangements or as a standalone decorative piece.',
+                    dimensions: '15cm H x 10cm W x 10cm D',
+                    material: 'PLA (Polylactic Acid)',
+                    price: '$25.00'
+                },
+                'dragon-figurine': {
+                    name: 'Dragon Figurine',
+                    image: 'https://placehold.co/600x600/F0F0F0/333333?text=Dragon+Figurine',
+                    description: 'An intricately detailed dragon figurine, capturing the mythical creature in a dynamic pose. A fantastic gift for fantasy enthusiasts or a unique desk ornament. Available in various colors.',
+                    dimensions: '12cm H x 18cm W x 8cm D',
+                    material: 'ABS (Acrylonitrile Butadiene Styrene)',
+                    price: '$35.00'
+                },
+                'phone-stand': {
+                    name: 'Phone Stand',
+                    image: 'https://placehold.co/600x600/F0F0F0/333333?text=Phone+Stand',
+                    description: 'A sturdy and ergonomic phone stand, designed to hold your smartphone at an ideal viewing angle. Perfect for video calls, watching media, or keeping your desk organized. Available in various colors.',
+                    dimensions: '10cm H x 8cm W x 12cm D',
+                    material: 'PLA (Polylactic Acid)',
+                    price: '$15.00'
+                },
+                'keychain-custom': {
+                    name: 'Custom Keychain',
+                    image: 'https://placehold.co/600x600/F0F0F0/333333?text=Custom+Keychain',
+                    description: 'Personalized keychain with your chosen text or simple logo. A great gift or promotional item. Durable and lightweight.',
+                    dimensions: '5cm H x 5cm W x 0.5cm D',
+                    material: 'PETG (Polyethylene Terephthalate Glycol)',
+                    price: '$10.00'
+                },
+                'pen-holder': {
+                    name: 'Pen Holder',
+                    image: 'https://placehold.co/600x600/F0F0F0/333333?text=Pen+Holder',
+                    description: 'A stylish and functional pen holder for your desk. Keep your writing instruments organized and within reach. Modern design to complement any workspace.',
+                    dimensions: '10cm H x 8cm W x 8cm D',
+                    material: 'PLA (Polylactic Acid)',
+                    price: '$18.00'
+                },
+                'earring-display': {
+                    name: 'Earring Display',
+                    image: 'https://placehold.co/600x600/F0F0F0/333333?text=Earring+Display',
+                    description: 'Elegant display stand for your earrings. Keeps them organized and tangle-free. A beautiful addition to your dresser or vanity.',
+                    dimensions: '18cm H x 15cm W x 5cm D',
+                    material: 'PLA (Polylactic Acid)',
+                    price: '$22.00'
+                },
+                'robot-toy': {
+                    name: 'Robot Toy',
+                    image: 'https://placehold.co/600x600/F0F0F0/333333?text=Robot+Toy',
+                    description: 'A fun, articulated robot toy, perfect for kids and collectors. Features movable joints for dynamic posing. Available in bright, playful colors.',
+                    dimensions: '15cm H x 10cm W x 6cm D',
+                    material: 'PLA (Polylactic Acid)',
+                    price: '$28.00'
+                },
+                'coaster-set': {
+                    name: 'Coaster Set',
+                    image: 'https://placehold.co/600x600/F0F0F0/333333?text=Coaster+Set',
+                    description: 'Set of four geometric coasters to protect your surfaces. Heat-resistant and easy to clean. Adds a touch of modern design to your home.',
+                    dimensions: '10cm Dia x 0.5cm H (each)',
+                    material: 'PETG (Polyethylene Terephthalate Glycol)',
+                    price: '$20.00'
+                },
+                'planter-mini': {
+                    name: 'Mini Planter',
+                    image: 'https://placehold.co/600x600/F0F0F0/333333?text=Mini+Planter',
+                    description: 'A charming mini planter for succulents or small herbs. Features a drainage hole for healthy plant growth. Perfect for windowsills or desks.',
+                    dimensions: '8cm H x 8cm Dia',
+                    material: 'PLA (Polylactic Acid)',
+                    price: '$12.00'
+                },
+                'puzzle-3d': {
+                    name: '3D Puzzle',
+                    image: 'https://placehold.co/600x600/F0F0F0/333333?text=3D+Puzzle',
+                    description: 'An engaging 3D puzzle that challenges your spatial reasoning. Once assembled, it forms a decorative object. Fun for all ages.',
+                    dimensions: '10cm H x 10cm W x 10cm D (assembled)',
+                    material: 'PLA (Polylactic Acid)',
+                    price: '$20.00'
+                },
+                'tool-holder': {
+                    name: 'Tool Holder',
+                    image: 'https://placehold.co/600x600/F0F0F0/333333?text=Tool+Holder',
+                    description: 'A practical tool holder for your workshop or craft area. Keeps small tools organized and easily accessible. Customizable slots for various tools.',
+                    dimensions: '15cm H x 20cm W x 10cm D',
+                    material: 'PETG (Polyethylene Terephthalate Glycol)',
+                    price: '$28.00'
+                },
+                'cable-organizer': {
+                    name: 'Cable Organizer',
+                    image: 'https://placehold.co/600x600/F0F0F0/333333?text=Cable+Organizer',
+                    description: 'Keep your cables neat and tidy with this simple yet effective cable organizer. Prevents tangles and makes your workspace look cleaner.',
+                    dimensions: '10cm L x 3cm W x 2cm H',
+                    material: 'TPU (Thermoplastic Polyurethane)',
+                    price: '$8.00'
+                }
+            };
+
+            const product = productsData[productId];
+
+            if (product) {
+                productDetailContent.innerHTML = `
+                    <div class="w-full lg:w-2/3 bg-white bg-opacity-90 rounded-xl shadow-lg p-6 lg:p-8 flex flex-col lg:flex-row">
+                        <div class="lg:w-1/2 mb-6 lg:mb-0 lg:pr-8">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-auto object-cover rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/600x600/F0F0F0/333333?text=Image+Error';">
+                        </div>
+                        <div class="lg:w-1/2">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-4">${product.name}</h2>
+                            <p class="text-gray-700 mb-4 leading-relaxed">${product.description}</p>
+                            <p class="text-gray-600 mb-2"><strong>Dimensions:</strong> ${product.dimensions}</p>
+                            <p class="text-gray-600 mb-4"><strong>Material:</strong> ${product.material}</p>
+                            <p class="text-2xl font-bold text-blue-600 mb-6">${product.price}</p>
+                            <a href="purchase.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2">
+                                <!-- SVG for Shopping Cart icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                                <span>Order This Item</span>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            } else {
+                productDetailContent.innerHTML = `
+                    <div class="flex flex-col items-center justify-center p-8 min-h-screen-minus-header bg-white bg-opacity-90 rounded-xl shadow-lg m-8">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Product Not Found</h2>
+                        <p class="text-gray-600 mb-6">The product you are looking for does not exist.</p>
+                        <a href="index.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-md transition-all duration-300">
+                            Back to Home
+                        </a>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
